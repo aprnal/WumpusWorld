@@ -91,7 +91,6 @@ def GameStart():
     # 각 위치에 부여 후 반환
     return Map, Visited, Svisited, stack
 
-# 여기서 y, x값이 현재 값 인건가
 def goFoward(y, x, Visited):
     global Head
     if (Visited[2][0]==1 and Visited[3][1]==1):
@@ -102,8 +101,7 @@ def goFoward(y, x, Visited):
             y, x = bump(Map, newY, newX, y, x)
             return goFoward(y, x, Visited)
         return newY, newX
-    #근데 이렇게 갇히는게 1,1 뿐만 아니라 탐색 중에서도 ..... 근데 이 경우가 제일 많아섴ㅋㅋㅋㅋㅋㅋㅋ 아니면
-
+        
     if Head == 1:  # 동
         newY = y
         newX = x + 1
@@ -238,7 +236,7 @@ def arrow(Map, x, y, Visited, Svisited):
 
 
 # S를 두번이상 만남 ; Svisited에서 그전에 stench 값이 있을 경우 실행
-def sureArrow(Map, x, y, i, j, visited, Svisited):  # S를 두번이상 만났다!
+def sureArrow(Map, x, y, i, j, visited, Svisited):  # S를 두번이상 만났다
     global Head
     if i == x and j == y:  # 대칭구조일 때
         if y > x:  # [y-1][x]에 W 존재가능성 ㅇ
@@ -351,8 +349,6 @@ def sureArrow(Map, x, y, i, j, visited, Svisited):  # S를 두번이상 만났�
                         if x - 1 >= 0:
                             Map[n][x - 1].setS(0)
                         return
-
-                    #이 게임에서 최적경로 찾는 게 목적이 아니니까 괜찮을 것 같아 제대로 피하기만하믄대니 그리고 dFS 특성상 이 방식이 최적이야
 
                 # 화살을 쏜 뒤에 아무일이 일어나지 않을 때 방문한 배열의 정보 출력
                 print("Arrow!!")
