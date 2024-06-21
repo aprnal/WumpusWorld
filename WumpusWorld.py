@@ -101,7 +101,7 @@ def goFoward(y, x, Visited):
             y, x = bump(Map, newY, newX, y, x)
             return goFoward(y, x, Visited)
         return newY, newX
-        
+
     if Head == 1:  # 동
         newY = y
         newX = x + 1
@@ -236,7 +236,7 @@ def arrow(Map, x, y, Visited, Svisited):
 
 
 # S를 두번이상 만남 ; Svisited에서 그전에 stench 값이 있을 경우 실행
-def sureArrow(Map, x, y, i, j, visited, Svisited):  # S를 두번이상 만났다
+def sureArrow(Map, x, y, i, j, visited, Svisited):  # S를 두번이상 만났다!
     global Head
     if i == x and j == y:  # 대칭구조일 때
         if y > x:  # [y-1][x]에 W 존재가능성 ㅇ
@@ -349,6 +349,7 @@ def sureArrow(Map, x, y, i, j, visited, Svisited):  # S를 두번이상 만났�
                         if x - 1 >= 0:
                             Map[n][x - 1].setS(0)
                         return
+
 
                 # 화살을 쏜 뒤에 아무일이 일어나지 않을 때 방문한 배열의 정보 출력
                 print("Arrow!!")
@@ -465,10 +466,8 @@ def ClimbingDFS(y, x, Visited, stack):
     print("Climbing...")
     while stack:
         y, x = stack.pop()
-        #Print_agentMap(Map,Visited,y,x)
-        print(f"\n경로: ({y},{x})")
+        print(f"\n경로: ({3-y},{x})")
     print("\nSuccess!!!")
-    #Print_agentMap(Map,Visited,y,x)
 
 
 ## 실질적인 게임 코드
@@ -481,7 +480,7 @@ def DFS(y, x, Map, Visited, Svisited, stack):
 
     if Map[y][x].getN() == 2:  # 금
         Visited[y][x] = 1
-        print("Gold found at ({}, {})!".format(y, x))
+        print("Gold found at ({}, {})!".format(3-y, x))
         print("Grab Gold!!")
 
         ClimbingDFS(y, x, Visited, stack)
@@ -551,7 +550,7 @@ def Print_agentMap(Map, Visited, ay, ax):
             else:
                 print(f"{Visited[y][x]} ", end=' ')
         print()
-    realY = 3 - y
+    realY = 3 - ay
     print(f"({realY}, {ax}) N:{Map[ay][ax].getN()} S:{Map[ay][ax].getS()} B:{Map[ay][ax].getB()} G:{Map[ay][ax].getG()}")
 
 
